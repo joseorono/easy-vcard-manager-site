@@ -19,23 +19,68 @@ const GithubIcon = ({ className }: { className?: string }) => (
 
 export function Footer() {
   return (
-    <footer className="border-t py-12 md:py-16 bg-muted/40">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="flex flex-col items-center md:items-start gap-2">
-          <Link href="/" className="flex items-center space-x-2">
-            <Contact2 className="h-6 w-6 text-primary" />
-            <span className="font-bold text-lg">Easy vCard Manager</span>
-          </Link>
-          <p className="text-sm text-muted-foreground">
-            Built by José Oroño. Open source under the MIT License.
-          </p>
+    <footer className="relative overflow-hidden border-t bg-background pt-16 pb-8">
+      {/* Top Gradient Border */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      
+      {/* Glow effect */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-primary/10 blur-[100px] rounded-full pointer-events-none" />
+
+      <div className="container relative mx-auto px-4 z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-6 lg:gap-12 mb-16">
+          
+          <div className="md:col-span-4 lg:col-span-5 flex flex-col items-start gap-4">
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                <Contact2 className="h-5 w-5" />
+              </div>
+              <span className="font-bold text-xl tracking-tight">Easy vCard Manager</span>
+            </Link>
+            <p className="text-muted-foreground mt-2 max-w-sm leading-relaxed">
+              The privacy-first contact library for professionals. Create, edit, and organize your digital business cards securely on your own device.
+            </p>
+          </div>
+
+          <div className="md:col-span-8 lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+            <div className="flex flex-col gap-4">
+              <h4 className="font-semibold text-foreground">Product</h4>
+              <Link href="#features" className="text-muted-foreground hover:text-primary transition-colors">Features</Link>
+              <Link href="#how-it-works" className="text-muted-foreground hover:text-primary transition-colors">How it Works</Link>
+              <Link href="#faq" className="text-muted-foreground hover:text-primary transition-colors">FAQ</Link>
+              <Link href="/app" className="text-muted-foreground hover:text-primary transition-colors font-medium">Open Editor &rarr;</Link>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <h4 className="font-semibold text-foreground">Resources</h4>
+              <Link href="https://github.com/joseorono/easy-vcard-manager" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">GitHub Repository</Link>
+              <Link href="https://github.com/joseorono/easy-vcard-manager/issues" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">Report an Issue</Link>
+              <span className="text-muted-foreground/50 cursor-not-allowed">Documentation</span>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <h4 className="font-semibold text-foreground">Legal</h4>
+              <Link href="https://github.com/joseorono/easy-vcard-manager/blob/main/LICENSE" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">MIT License</Link>
+              <span className="text-muted-foreground/50 cursor-not-allowed">Privacy Policy</span>
+              <span className="text-muted-foreground/50 cursor-not-allowed">Terms of Service</span>
+            </div>
+          </div>
         </div>
         
-        <div className="flex items-center gap-6">
-          <Link href="https://github.com/joseorono/easy-vcard-manager" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
-            <span className="sr-only">GitHub</span>
-            <GithubIcon className="h-6 w-6" />
-          </Link>
+        <div className="pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} José Oroño. Open source under the MIT License.
+          </p>
+          
+          <div className="flex items-center gap-4">
+            <Link 
+              href="https://github.com/joseorono/easy-vcard-manager" 
+              target="_blank" 
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            >
+              <span className="sr-only">GitHub</span>
+              <GithubIcon className="h-5 w-5" />
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
