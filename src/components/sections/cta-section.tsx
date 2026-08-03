@@ -11,7 +11,7 @@ export function CtaSection() {
       <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-            Open a .vcf, fix it, export it
+            Open a .vcf, edit it, export it
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-primary-foreground/80 text-pretty">
             For one contact or hundreds. No account, no upload, no cost — just open
