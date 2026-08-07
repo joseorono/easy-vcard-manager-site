@@ -68,7 +68,7 @@ export default function LandingPage() {
 
         {/* PRIVACY STRIP */}
         <section className="border-y border-white/5 bg-background/50 backdrop-blur-xl py-10 relative z-10 shadow-lg">
-          <div className="container mx-auto px-4 flex flex-wrap justify-center gap-x-12 gap-y-6 text-sm md:text-base font-semibold text-muted-foreground/80">
+          <div id="feature-badges" className="container mx-auto px-4 flex flex-wrap justify-center gap-x-12 gap-y-6 text-sm md:text-base font-semibold text-muted-foreground/80">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-full bg-primary/10"><ShieldCheck className="h-5 w-5 text-primary" /></div>
               100% Offline Architecture
@@ -91,7 +91,7 @@ export default function LandingPage() {
         {/* CORE FEATURES */}
         <section id="features" className="py-24 md:py-36 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background -z-10" />
-          <div className="container mx-auto px-4">
+          <div id="features-section" className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-20">
               <Badge variant="outline" className="mb-4 text-primary border-primary/20 bg-primary/10">Features</Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Everything you need,<br/>directly on your device</h2>
@@ -129,7 +129,7 @@ export default function LandingPage() {
         {/* HOW IT WORKS */}
         <section id="how-it-works" className="py-24 md:py-36 relative overflow-hidden border-y border-white/5 bg-black/20">
           <div className="absolute -left-1/4 top-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] -z-10" />
-          <div className="container mx-auto px-4">
+          <div id="how-it-works-section" className="container mx-auto px-4">
             <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
               <div className="flex-1 space-y-10">
                 <div>
