@@ -81,7 +81,7 @@ export const FEATURES = [
     icon: "export",
     title: "Take them anywhere",
     description: "Export a compatible .vcf, a scan-ready QR code or a contact-card image.",
-    points: ["Choose vCard 2.1, 3.0 or 4.0", "Share as PNG, SVG or an image"],
+    points: ["Choose vCard 2.1, 3.0 or 4.0", "Share as a QR code or as a Business Card."],
   },
   {
     icon: "offline",
