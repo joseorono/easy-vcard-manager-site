@@ -24,12 +24,15 @@ export function PrivacySection() {
             {PRIVACY_POINTS.map((point, index) => {
               const Icon = index === 0 ? ServerOff : index === 1 ? Lock : EyeOff;
               return (
-              <div key={point.title}>
-                <dt className="flex items-center gap-2 text-sm font-semibold"><Icon className="size-4 text-primary" />{point.title}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {point.description}
-                </dd>
-              </div>
+                <div key={point.title}>
+                  <dt className="flex flex-col items-start gap-3 text-sm font-semibold">
+                    <Icon className="size-5 text-primary" />
+                    <span>{point.title}</span>
+                  </dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {point.description}
+                  </dd>
+                </div>
               );
             })}
           </dl>
