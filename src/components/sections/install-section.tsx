@@ -10,7 +10,7 @@ const platforms = [
     icon: Smartphone,
     title: "Install as a mobile app",
     description:
-      "Add it to your home screen from the browser. On small screens the form takes the full width, while the live preview and the contact list slide in when you need them.",
+      "Add it to your home screen from the browser. The interface adapts to your screen, whether you are using a phone, tablet or desktop.",
   },
   {
     icon: MonitorDown,

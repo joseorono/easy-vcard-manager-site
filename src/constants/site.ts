@@ -87,7 +87,7 @@ export const FEATURES = [
     icon: "offline",
     title: "Works offline",
     description: "Use it in a browser, install it as a PWA or use the Windows desktop build.",
-    points: ["No account or cloud upload", "Designed for desktop and mobile"],
+    points: ["No account or cloud upload", "Fits phones, tablets and desktops"],
   },
 ] as const;
 
