@@ -151,6 +151,19 @@
   );
 }
 
+@utility cta-glow {
+  background-image: radial-gradient(
+    ellipse 115% 115% at 100% 0%,
+    color-mix(in oklch, var(--primary), transparent 72%),
+    transparent 75%
+  );
+  mask-image: radial-gradient(
+    ellipse 120% 120% at 100% 0%,
+    black 25%,
+    transparent 100%
+  );
+}
+
 @utility hero-glow {
   background-image: radial-gradient(
     55% 55% at 50% 0%,
