@@ -97,9 +97,19 @@ export function SiteFooter() {
               className="font-medium text-foreground underline-offset-4 hover:underline"
             >
               {AUTHOR_NAME}
-            </a>
+            </a>{" "}
+            and the{" "}
+            <a
+              href="https://exologic.agency/"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="font-medium text-foreground underline-offset-4 hover:underline"
+            >
+              Exologic
+            </a>{" "}
+            team.
           </p>
-          <p>Created by José Oroño for Exologic LLC · Free and open source under the MIT license.</p>
+          <p>Free and open source under the MIT license.</p>
         </div>
       </div>
     </footer>
