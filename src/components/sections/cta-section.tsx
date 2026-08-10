@@ -53,13 +53,13 @@ export function CtaSection() {
               href={REPO_URL}
               target="_blank"
               rel="noreferrer noopener"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "lg" }),
-                "h-11 w-full border border-primary/30 px-6 text-base text-foreground hover:bg-primary/10 hover:text-foreground dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-900 dark:hover:text-zinc-50 sm:w-auto"
-              )}
+              className="github-secondary h-11 w-full px-6 text-base sm:w-auto"
             >
               <GithubIcon className="size-4" />
-              Star it on GitHub
+              <span className="github-secondary-label" data-label="Star it on GitHub">
+                Star it on GitHub
+              </span>
+              <ArrowRight className="size-4" />
             </a>
           </div>
         </div>

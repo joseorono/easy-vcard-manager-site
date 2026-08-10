@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Heart } from "lucide-react";
+import { ArrowRight, Heart } from "lucide-react";
 
 import { GithubIcon } from "@/components/github-icon";
 import {
@@ -42,10 +42,13 @@ export function SiteFooter() {
               href={REPO_URL}
               target="_blank"
               rel="noreferrer noopener"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="github-secondary mt-4 text-sm"
             >
               <GithubIcon className="size-4" />
-              joseorono/easy-vcard-manager
+              <span className="github-secondary-label" data-label="joseorono/easy-vcard-manager">
+                joseorono/easy-vcard-manager
+              </span>
+              <ArrowRight className="size-4" />
             </a>
           </div>
 

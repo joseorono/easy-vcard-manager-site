@@ -55,13 +55,13 @@ export function HeroSection() {
               href={REPO_URL}
               target="_blank"
               rel="noreferrer noopener"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "h-11 w-full px-6 text-base sm:w-auto"
-              )}
+              className="github-secondary h-11 w-full px-6 text-base sm:w-auto"
             >
               <GithubIcon className="size-4" />
-              View on GitHub
+              <span className="github-secondary-label" data-label="View on GitHub">
+                View on GitHub
+              </span>
+              <ArrowRight className="size-4" />
             </a>
           </div>
 

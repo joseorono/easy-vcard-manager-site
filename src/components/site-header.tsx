@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 
 import { GithubIcon } from "@/components/github-icon";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -56,7 +56,7 @@ export function SiteHeader() {
             aria-label={`${SITE_NAME} on GitHub`}
             className={cn(
               buttonVariants({ variant: "ghost", size: "icon-lg" }),
-              "hidden text-muted-foreground hover:text-foreground sm:inline-flex"
+              "github-secondary-icon hidden sm:inline-flex"
             )}
           >
             <GithubIcon className="size-5" />
@@ -117,10 +117,13 @@ export function SiteHeader() {
                 target="_blank"
                 rel="noreferrer noopener"
                 onClick={() => setIsMenuOpen(false)}
-                className="flex items-center gap-2 rounded-md px-2 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className="github-secondary mx-2 py-3 text-sm"
               >
                 <GithubIcon className="size-4" />
-                View on GitHub
+                <span className="github-secondary-label" data-label="View on GitHub">
+                  View on GitHub
+                </span>
+                <ArrowRight className="size-4" />
               </a>
             </li>
           </ul>

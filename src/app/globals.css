@@ -211,6 +211,90 @@
   .cta-primary:focus-visible::after {
     transform: translateX(0) skewX(-14deg);
   }
+
+  .github-secondary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 0;
+    background: transparent;
+    color: var(--muted-foreground);
+    font-weight: 600;
+    transition: color 200ms ease;
+  }
+
+  .github-secondary::after {
+    position: absolute;
+    right: 0;
+    bottom: -0.35rem;
+    left: 0;
+    height: 2px;
+    background: var(--primary);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease-out;
+  }
+
+  .github-secondary-label {
+    position: relative;
+    margin: 0;
+  }
+
+  .github-secondary-label::before {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    width: 0;
+    color: var(--primary);
+    content: attr(data-label);
+    white-space: nowrap;
+    transition: width 300ms ease-out;
+  }
+
+  .github-secondary:hover,
+  .github-secondary:focus-visible {
+    color: var(--primary);
+  }
+
+  .github-secondary:hover::after,
+  .github-secondary:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .github-secondary:hover .github-secondary-label::before,
+  .github-secondary:focus-visible .github-secondary-label::before {
+    width: 100%;
+  }
+
+  .github-secondary svg:last-child {
+    transition: transform 200ms ease, color 200ms ease;
+  }
+
+  .github-secondary:hover svg:last-child,
+  .github-secondary:focus-visible svg:last-child {
+    transform: translateX(4px);
+    color: var(--primary);
+  }
+
+  .github-secondary:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 4px;
+  }
+
+  .github-secondary-icon {
+    border-color: transparent;
+    background: transparent;
+    color: var(--muted-foreground);
+    transition: color 200ms ease, transform 200ms ease;
+  }
+
+  .github-secondary-icon:hover,
+  .github-secondary-icon:focus-visible {
+    color: var(--primary);
+    transform: translateY(-1px);
+  }
 }
 
 @layer base {

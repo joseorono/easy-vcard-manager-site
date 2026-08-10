@@ -1,9 +1,7 @@
-import { Scale, Terminal } from "lucide-react";
+import { ArrowRight, Scale, Terminal } from "lucide-react";
 
 import { GithubIcon } from "@/components/github-icon";
-import { buttonVariants } from "@/components/ui/button";
 import { REPO_URL } from "@/constants/site";
-import { cn } from "@/lib/utils";
 
 const VCF_SAMPLE = `BEGIN:VCARD
 VERSION:4.0
@@ -69,13 +67,13 @@ export function DevelopersSection() {
               href={REPO_URL}
               target="_blank"
               rel="noreferrer noopener"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "mt-8 h-11 w-full px-6 text-base sm:w-auto"
-              )}
+              className="github-secondary mt-8 h-11 w-full px-6 text-base sm:w-auto"
             >
               <GithubIcon className="size-4" />
-              Read the source
+              <span className="github-secondary-label" data-label="Read the source">
+                Read the source
+              </span>
+              <ArrowRight className="size-4" />
             </a>
           </div>
 
