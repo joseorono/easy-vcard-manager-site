@@ -45,7 +45,7 @@ export function HeroSection() {
               rel="noreferrer noopener"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 w-full px-6 text-base sm:w-auto"
+                "cta-primary h-11 w-full px-6 text-base sm:w-auto"
               )}
             >
               Open the editor

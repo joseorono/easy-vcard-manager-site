@@ -43,7 +43,7 @@ export function CtaSection() {
               rel="noreferrer noopener"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-11 w-full bg-primary px-6 text-base text-primary-foreground hover:bg-primary/90 sm:w-auto"
+                "cta-primary h-11 w-full px-6 text-base sm:w-auto"
               )}
             >
               Open the editor

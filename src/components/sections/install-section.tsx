@@ -65,7 +65,7 @@ export function InstallSection() {
               rel="noreferrer noopener"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "mt-8 h-11 w-full px-6 text-base sm:w-auto"
+                "cta-primary mt-8 h-11 w-full px-6 text-base sm:w-auto"
               )}
             >
               Launch the app

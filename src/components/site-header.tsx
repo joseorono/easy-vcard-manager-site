@@ -65,7 +65,7 @@ export function SiteHeader() {
             href={APP_URL}
             target="_blank"
             rel="noreferrer noopener"
-            className={cn(buttonVariants({ size: "lg" }), "px-4")}
+            className={cn(buttonVariants({ size: "lg" }), "cta-primary px-4")}
           >
             <span className="sm:hidden">Open app</span>
             <span className="hidden sm:inline">Open the editor</span>
