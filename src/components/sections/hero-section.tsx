@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, type RefObject } from "react";
 import Image from "next/image";
 import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 
@@ -6,18 +9,139 @@ import { buttonVariants } from "@/components/ui/button";
 import { APP_URL, HERO_HIGHLIGHTS, REPO_URL } from "@/constants/site";
 import { cn } from "@/lib/utils";
 
+function useInteractiveGrid(
+  sectionRef: RefObject<HTMLElement | null>,
+  canvasRef: RefObject<HTMLCanvasElement | null>
+) {
+  useEffect(() => {
+    const section = sectionRef.current;
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext("2d");
+
+    if (
+      !section ||
+      !canvas ||
+      !context ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    const squareSize = 80;
+    const cells: Array<{ x: number; y: number; alpha: number; lastTouched: number }> = [];
+    let width = 0;
+    let height = 0;
+    let animationFrame = 0;
+    let lastFrame = performance.now();
+    const primaryColor =
+      getComputedStyle(section).getPropertyValue("--primary").trim() || "#3b82f6";
+
+    const initGrid = () => {
+      const bounds = section.getBoundingClientRect();
+      const devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+      width = bounds.width;
+      height = bounds.height;
+      canvas.width = width * devicePixelRatio;
+      canvas.height = height * devicePixelRatio;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+      cells.length = 0;
+
+      for (let x = 0; x < width; x += squareSize) {
+        for (let y = 0; y < height; y += squareSize) {
+          cells.push({ x, y, alpha: 0, lastTouched: 0 });
+        }
+      }
+    };
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const bounds = section.getBoundingClientRect();
+      const mouseX = event.clientX - bounds.left;
+      const mouseY = event.clientY - bounds.top;
+
+      if (mouseX < 0 || mouseY < 0 || mouseX >= width || mouseY >= height) {
+        return;
+      }
+
+      const column = Math.floor(mouseX / squareSize);
+      const row = Math.floor(mouseY / squareSize);
+      const columns = Math.ceil(width / squareSize);
+      const cell = cells[row * columns + column];
+
+      if (cell) {
+        cell.alpha = 1;
+        cell.lastTouched = performance.now();
+      }
+    };
+
+    const drawGrid = (now: number) => {
+      const elapsed = Math.min(now - lastFrame, 50);
+      lastFrame = now;
+      context.clearRect(0, 0, width, height);
+      context.lineWidth = 1;
+
+      for (const cell of cells) {
+        if (cell.alpha > 0 && now - cell.lastTouched > 500) {
+          cell.alpha = Math.max(0, cell.alpha - elapsed * 0.0015);
+        }
+
+        if (cell.alpha === 0) {
+          continue;
+        }
+
+        context.globalAlpha = cell.alpha * 0.78;
+        context.strokeStyle = primaryColor;
+        context.strokeRect(
+          cell.x + 0.5,
+          cell.y + 0.5,
+          squareSize - 1,
+          squareSize - 1
+        );
+      }
+
+      context.globalAlpha = 1;
+      animationFrame = requestAnimationFrame(drawGrid);
+    };
+
+    const resizeObserver = new ResizeObserver(initGrid);
+    resizeObserver.observe(section);
+    initGrid();
+    window.addEventListener("mousemove", handleMouseMove);
+    animationFrame = requestAnimationFrame(drawGrid);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
+      window.removeEventListener("mousemove", handleMouseMove);
+      context.clearRect(0, 0, width, height);
+    };
+  }, [canvasRef, sectionRef]);
+}
+
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useInteractiveGrid(sectionRef, canvasRef);
+
   return (
-    <section id="top" className="relative overflow-hidden bg-[radial-gradient(circle_at_20%_0%,color-mix(in_oklab,var(--primary)_12%,transparent),transparent_34%),radial-gradient(circle_at_85%_10%,color-mix(in_oklab,#60a5fa_10%,transparent),transparent_30%)]">
-      <div
+    <section
+      ref={sectionRef}
+      id="top"
+      className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_20%_0%,color-mix(in_oklab,var(--primary)_12%,transparent),transparent_34%),radial-gradient(circle_at_85%_10%,color-mix(in_oklab,#60a5fa_10%,transparent),transparent_30%)]"
+    >
+      <canvas
+        ref={canvasRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-160 hero-grid"
+        className="pointer-events-none absolute inset-0 z-0 size-full"
       />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 -top-32 -z-10 h-128 hero-glow"
       />
-      <div className="mx-auto w-full max-w-6xl px-4 pt-16 pb-12 sm:px-6 sm:pt-24 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pt-16 pb-12 sm:px-6 sm:pt-24 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur-sm">
             <ShieldCheck className="size-3.5 text-primary" />

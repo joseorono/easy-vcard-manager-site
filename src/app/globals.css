@@ -295,6 +295,65 @@
     color: var(--primary);
     transform: translateY(-1px);
   }
+
+  .cta-secondary {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid color-mix(in oklch, var(--primary) 35%, transparent);
+    background: transparent;
+    color: var(--foreground);
+    box-shadow: none;
+  }
+
+  .cta-secondary::before,
+  .cta-secondary::after {
+    position: absolute;
+    inset: -45% -12%;
+    z-index: 0;
+    content: "";
+    transform: translateX(-115%) skewX(-14deg);
+    transform-origin: left center;
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cta-secondary::before {
+    background: color-mix(in oklch, var(--primary) 10%, transparent);
+  }
+
+  .cta-secondary::after {
+    background: color-mix(in oklch, var(--primary) 16%, transparent);
+    transition-delay: 90ms;
+  }
+
+  .cta-secondary > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-secondary .github-secondary-label::before {
+    color: var(--primary-foreground);
+  }
+
+  .cta-secondary:hover,
+  .cta-secondary:focus-visible {
+    background: transparent;
+    color: var(--primary-foreground);
+  }
+
+  .cta-secondary:hover::before,
+  .cta-secondary:hover::after,
+  .cta-secondary:focus-visible::before,
+  .cta-secondary:focus-visible::after {
+    transform: translateX(0) skewX(-14deg);
+  }
+
+  .cta-secondary:hover .github-secondary-label::before,
+  .cta-secondary:focus-visible .github-secondary-label::before,
+  .cta-secondary:hover svg:last-child,
+  .cta-secondary:focus-visible svg:last-child {
+    color: var(--primary-foreground);
+  }
 }
 
 @layer base {

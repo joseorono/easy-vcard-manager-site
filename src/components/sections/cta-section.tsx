@@ -53,7 +53,7 @@ export function CtaSection() {
               href={REPO_URL}
               target="_blank"
               rel="noreferrer noopener"
-              className="github-secondary h-11 w-full px-6 text-base sm:w-auto"
+              className="github-secondary cta-secondary h-11 w-full rounded-lg px-6 text-base sm:w-auto"
             >
               <GithubIcon className="size-4" />
               <span className="github-secondary-label" data-label="Star it on GitHub">
