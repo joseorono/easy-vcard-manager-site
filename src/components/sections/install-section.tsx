@@ -46,7 +46,7 @@ export function InstallSection() {
             <ul className="mt-8 space-y-6">
               {platforms.map((platform) => (
                 <li key={platform.title} className="flex items-start gap-4">
-                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm shadow-primary/10">
                     <platform.icon className="size-5" />
                   </span>
                   <div>

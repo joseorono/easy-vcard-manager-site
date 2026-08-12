@@ -50,7 +50,7 @@ export function FeaturesSection() {
               key={feature.title}
               className="flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/40"
             >
-              <span className="inline-flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <span className="inline-flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm shadow-primary/10">
                 <Icon className="size-5" />
               </span>
               <h3 className="mt-4 text-base font-semibold">{feature.title}</h3>

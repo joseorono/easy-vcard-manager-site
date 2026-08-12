@@ -38,7 +38,7 @@ export function DevelopersSection() {
 
             <div className="mt-6 space-y-4">
               <div className="flex items-start gap-3">
-                <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm shadow-primary/10">
                   <Terminal className="size-5" />
                 </span>
                 <div>
@@ -50,7 +50,7 @@ export function DevelopersSection() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm shadow-primary/10">
                   <Scale className="size-5" />
                 </span>
                 <div>

@@ -23,7 +23,7 @@ export function FormatsSection() {
       <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {exportTargets.map((target) => (
           <li key={target.label} className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40">
-            <span className="inline-flex size-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <span className="inline-flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm shadow-primary/10">
               <target.icon className="size-4" />
             </span>
             <h3 className="mt-4 text-sm font-semibold">{target.label}</h3>
