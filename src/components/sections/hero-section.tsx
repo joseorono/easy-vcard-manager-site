@@ -28,11 +28,14 @@ function useInteractiveGrid(
     }
 
     const squareSize = 80;
-    const cells: Array<{ x: number; y: number; alpha: number; lastTouched: number }> = [];
+    type GridCell = { x: number; y: number; alpha: number; lastTouched: number };
+    const cells = new Map<string, GridCell>();
     let width = 0;
     let height = 0;
     let animationFrame = 0;
     let lastFrame = performance.now();
+    let previousColumn = -1;
+    let previousRow = -1;
     const primaryColor =
       getComputedStyle(section).getPropertyValue("--primary").trim() || "#3b82f6";
 
@@ -47,11 +50,18 @@ function useInteractiveGrid(
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-      cells.length = 0;
+      cells.clear();
+      previousColumn = -1;
+      previousRow = -1;
 
-      for (let x = 0; x < width; x += squareSize) {
-        for (let y = 0; y < height; y += squareSize) {
-          cells.push({ x, y, alpha: 0, lastTouched: 0 });
+      for (let column = 0; column < Math.ceil(width / squareSize); column += 1) {
+        for (let row = 0; row < Math.ceil(height / squareSize); row += 1) {
+          cells.set(`${column}:${row}`, {
+            x: column * squareSize,
+            y: row * squareSize,
+            alpha: 0,
+            lastTouched: 0,
+          });
         }
       }
     };
@@ -62,27 +72,51 @@ function useInteractiveGrid(
       const mouseY = event.clientY - bounds.top;
 
       if (mouseX < 0 || mouseY < 0 || mouseX >= width || mouseY >= height) {
+        previousColumn = -1;
+        previousRow = -1;
         return;
       }
 
       const column = Math.floor(mouseX / squareSize);
       const row = Math.floor(mouseY / squareSize);
-      const columns = Math.ceil(width / squareSize);
-      const cell = cells[row * columns + column];
+      const now = performance.now();
 
-      if (cell) {
-        cell.alpha = 1;
-        cell.lastTouched = performance.now();
+      if (previousColumn < 0 || previousRow < 0) {
+        previousColumn = column;
+        previousRow = row;
       }
+      const steps = Math.max(
+        Math.abs(column - previousColumn),
+        Math.abs(row - previousRow),
+        1
+      );
+
+      for (let step = 0; step <= steps; step += 1) {
+        const currentColumn = Math.round(
+          previousColumn + ((column - previousColumn) * step) / steps
+        );
+        const currentRow = Math.round(
+          previousRow + ((row - previousRow) * step) / steps
+        );
+        const cell = cells.get(`${currentColumn}:${currentRow}`);
+
+        if (cell) {
+          cell.alpha = 1;
+          cell.lastTouched = now;
+        }
+      }
+
+      previousColumn = column;
+      previousRow = row;
     };
 
     const drawGrid = (now: number) => {
       const elapsed = Math.min(now - lastFrame, 50);
       lastFrame = now;
       context.clearRect(0, 0, width, height);
-      context.lineWidth = 1;
+      context.lineWidth = 0.7;
 
-      for (const cell of cells) {
+      for (const cell of cells.values()) {
         if (cell.alpha > 0 && now - cell.lastTouched > 500) {
           cell.alpha = Math.max(0, cell.alpha - elapsed * 0.0015);
         }
@@ -91,7 +125,7 @@ function useInteractiveGrid(
           continue;
         }
 
-        context.globalAlpha = cell.alpha * 0.78;
+        context.globalAlpha = cell.alpha * 0.28;
         context.strokeStyle = primaryColor;
         context.strokeRect(
           cell.x + 0.5,
