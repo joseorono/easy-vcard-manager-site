@@ -22,7 +22,7 @@ const resourceLinks = [
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-muted/40">
-      <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-6xl px-4 pt-12 pb-6 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="max-w-sm">
             <div className="flex items-center gap-2.5">
@@ -88,11 +88,11 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p className="inline-flex items-center gap-1.5">
-            Made with
-            <Heart className="size-3.5 text-primary" aria-label="love" />
-            by{" "}
+        <div className="mt-10 flex flex-col gap-3 border-t border-border pt-6 text-center text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:text-left">
+          <p className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 leading-6 sm:justify-start">
+            <span>Made with</span>
+            <Heart className="size-3.5 shrink-0 text-primary" aria-hidden="true" />
+            <span>by</span>
             <a
               href={AUTHOR_URL}
               target="_blank"
@@ -100,8 +100,8 @@ export function SiteFooter() {
               className="font-medium text-foreground underline-offset-4 hover:underline"
             >
               {AUTHOR_NAME}
-            </a>{" "}
-            and the{" "}
+            </a>
+            <span>and the</span>
             <a
               href="https://exologic.agency/"
               target="_blank"
@@ -109,8 +109,8 @@ export function SiteFooter() {
               className="font-medium text-foreground underline-offset-4 hover:underline"
             >
               Exologic
-            </a>{" "}
-            team.
+            </a>
+            <span>team.</span>
           </p>
           <p>Free and open source under the MIT license.</p>
         </div>

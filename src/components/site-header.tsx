@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Menu, X } from "lucide-react";
 
@@ -12,23 +12,9 @@ import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isFloatingCtaVisible, setIsFloatingCtaVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const halfwayPoint = document.documentElement.scrollHeight / 2;
-      setIsFloatingCtaVisible(window.scrollY + window.innerHeight >= halfwayPoint);
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
-    <>
-      <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md supports-backdrop-filter:bg-background/70">
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md supports-backdrop-filter:bg-background/70">
       <div className="relative z-10 mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-2 px-3 sm:gap-4 sm:px-6 lg:px-8">
         <a
           href="#top"
@@ -146,24 +132,5 @@ export function SiteHeader() {
       ) : null}
 
     </header>
-
-    <a
-      href={APP_URL}
-      target="_blank"
-      rel="noreferrer noopener"
-      aria-hidden={!isFloatingCtaVisible}
-      tabIndex={isFloatingCtaVisible ? 0 : -1}
-      className={cn(
-        buttonVariants({ size: "lg" }),
-        "cta-primary fixed! right-3 bottom-3 left-3 z-50 justify-center shadow-lg sm:hidden",
-        isFloatingCtaVisible
-          ? "translate-y-0 opacity-100"
-          : "pointer-events-none translate-y-4 opacity-0"
-      )}
-    >
-      Open the editor
-      <ArrowRight className="size-4" />
-    </a>
-    </>
   );
 }
