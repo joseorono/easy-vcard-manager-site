@@ -4,9 +4,9 @@ import { useEffect, useRef, type RefObject } from "react";
 import Image from "next/image";
 import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 
-import { GithubIcon } from "@/components/github-icon";
+import { GithubButton } from "@/components/github-button";
 import { buttonVariants } from "@/components/ui/button";
-import { APP_URL, HERO_HIGHLIGHTS, REPO_URL } from "@/constants/site";
+import { APP_URL, HERO_HIGHLIGHTS } from "@/constants/site";
 import { cn } from "@/lib/utils";
 
 function useInteractiveGrid(
@@ -209,18 +209,7 @@ export function HeroSection() {
               Open the editor
               <ArrowRight className="size-4" />
             </a>
-            <a
-              href={REPO_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="github-secondary h-11 w-full px-6 text-base sm:w-auto"
-            >
-              <GithubIcon className="size-4" />
-              <span className="github-secondary-label" data-label="View on GitHub">
-                View on GitHub
-              </span>
-              <ArrowRight className="size-4" />
-            </a>
+            <GithubButton />
           </div>
 
           <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">

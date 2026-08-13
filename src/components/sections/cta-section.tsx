@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
 
-import { GithubIcon } from "@/components/github-icon";
+import { GithubButton } from "@/components/github-button";
 import { buttonVariants } from "@/components/ui/button";
-import { APP_URL, REPO_URL } from "@/constants/site";
+import { APP_URL } from "@/constants/site";
 import { cn } from "@/lib/utils";
 
 export function CtaSection() {
@@ -49,18 +49,7 @@ export function CtaSection() {
               Open the editor
               <ArrowRight className="size-4" />
             </a>
-            <a
-              href={REPO_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="github-secondary cta-secondary h-11 w-full rounded-lg px-6 text-base sm:w-auto"
-            >
-              <GithubIcon className="size-4" />
-              <span className="github-secondary-label" data-label="Star it on GitHub">
-                Star it on GitHub
-              </span>
-              <ArrowRight className="size-4" />
-            </a>
+            <GithubButton label="Star it on GitHub" />
           </div>
         </div>
       </div>
