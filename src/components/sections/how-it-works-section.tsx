@@ -25,7 +25,7 @@ export function HowItWorksSection() {
             >
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute right-2 bottom-[-1.1rem] z-0 text-[8rem] leading-none font-black tracking-[-0.08em] text-primary/15 select-none transition-colors group-hover:text-primary/20"
+                className="pointer-events-none absolute -right-1 -bottom-5 z-0 text-[8rem] leading-none font-black tracking-[-0.08em] text-primary/15 select-none transition-colors group-hover:text-primary/20"
               >
                 {index + 1}
               </span>
