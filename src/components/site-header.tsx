@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Menu, X } from "lucide-react";
 
@@ -12,23 +12,38 @@ import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isFloatingCtaVisible, setIsFloatingCtaVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const halfwayPoint = document.documentElement.scrollHeight / 2;
+      setIsFloatingCtaVisible(window.scrollY + window.innerHeight >= halfwayPoint);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md supports-backdrop-filter:bg-background/70">
-      <div className="relative z-10 mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <>
+      <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md supports-backdrop-filter:bg-background/70">
+      <div className="relative z-10 mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-2 px-3 sm:gap-4 sm:px-6 lg:px-8">
         <a
           href="#top"
-          className="flex items-center gap-2.5 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+          className="flex min-w-0 items-center gap-2 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring sm:gap-2.5"
         >
           <Image
             src="/vcf.svg"
             alt=""
             width={32}
             height={32}
-            className="size-8 shrink-0 rounded-md"
+            className="size-7 shrink-0 rounded-md sm:size-8"
           />
-          <span className="text-[0.95rem] font-semibold tracking-tight whitespace-nowrap">
-            {SITE_NAME}
+          <span className="text-xs font-semibold tracking-tight whitespace-nowrap sm:text-[0.95rem]">
+            <span className="sm:hidden">Easy vCard</span>
+            <span className="hidden sm:inline">{SITE_NAME}</span>
           </span>
         </a>
 
@@ -47,7 +62,7 @@ export function SiteHeader() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-2">
           <ThemeToggle className="hidden sm:inline-flex" />
           <a
             href={REPO_URL}
@@ -65,7 +80,7 @@ export function SiteHeader() {
             href={APP_URL}
             target="_blank"
             rel="noreferrer noopener"
-            className={cn(buttonVariants({ size: "lg" }), "cta-primary px-4")}
+            className={cn(buttonVariants({ size: "lg" }), "cta-primary px-3 text-xs sm:px-4 sm:text-sm")}
           >
             <span className="sm:hidden">Open app</span>
             <span className="hidden sm:inline">Open the editor</span>
@@ -129,6 +144,26 @@ export function SiteHeader() {
           </ul>
         </nav>
       ) : null}
+
     </header>
+
+    <a
+      href={APP_URL}
+      target="_blank"
+      rel="noreferrer noopener"
+      aria-hidden={!isFloatingCtaVisible}
+      tabIndex={isFloatingCtaVisible ? 0 : -1}
+      className={cn(
+        buttonVariants({ size: "lg" }),
+        "cta-primary fixed! right-3 bottom-3 left-3 z-50 justify-center shadow-lg sm:hidden",
+        isFloatingCtaVisible
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-4 opacity-0"
+      )}
+    >
+      Open the editor
+      <ArrowRight className="size-4" />
+    </a>
+    </>
   );
 }
