@@ -73,8 +73,16 @@ export function InstallSection() {
             </a>
           </div>
 
-          <div className="flex items-end justify-center gap-4 sm:gap-6">
-            <div className="w-1/2 max-w-70 overflow-hidden rounded-2xl border border-border bg-card shadow-xl">
+          <div className="relative flex items-end justify-center gap-4 sm:gap-6">
+            <Image
+              src="/svg/6.svg"
+              alt=""
+              width={220}
+              height={220}
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-8 -bottom-8 z-0 size-44 opacity-10 sm:size-52"
+            />
+            <div className="relative z-10 w-1/2 max-w-70 overflow-hidden rounded-2xl border border-border bg-card shadow-xl">
               <Image
                 src="/screenshots/editor-mobile-form.png"
                 alt="The contact form on a phone, with import and download actions pinned to the bottom"
@@ -84,7 +92,7 @@ export function InstallSection() {
                 className="h-auto w-full"
               />
             </div>
-            <div className="w-1/2 max-w-70 overflow-hidden rounded-2xl border border-border bg-card shadow-xl">
+            <div className="relative z-10 w-1/2 max-w-70 overflow-hidden rounded-2xl border border-border bg-card shadow-xl">
               <Image
                 src="/screenshots/editor-mobile-preview.png"
                 alt="The live preview panel on a phone, showing the visual card, code and QR tabs"
