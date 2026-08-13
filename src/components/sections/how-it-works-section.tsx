@@ -17,17 +17,23 @@ export function HowItWorksSection() {
           </p>
         </div>
 
-        <ol className="relative mt-12 grid gap-8 md:grid-cols-3 md:gap-6 md:before:absolute md:before:left-[16.66%] md:before:right-[16.66%] md:before:top-5 md:before:h-px md:before:bg-primary/25">
+        <ol className="mt-10 grid gap-4 md:grid-cols-3 md:gap-5">
           {STEPS.map((step, index) => (
-            <li key={step.title} className="relative z-10 flex gap-4 md:block md:text-center">
+            <li
+              key={step.title}
+              className="group relative min-h-44 overflow-hidden rounded-2xl border border-border bg-card/90 p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md hover:shadow-primary/5"
+            >
               <span
                 aria-hidden="true"
-                className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border-4 border-background bg-primary text-sm font-semibold text-primary-foreground shadow-sm"
+                className="pointer-events-none absolute right-2 bottom-[-1.1rem] z-0 text-[8rem] leading-none font-black tracking-[-0.08em] text-primary/15 select-none transition-colors group-hover:text-primary/20"
               >
                 {index + 1}
               </span>
-              <div className="rounded-xl border border-border bg-card p-5 md:mt-5">
-                <h3 className="text-base font-semibold">{step.title}</h3>
+              <div className="relative z-10 max-w-[82%]">
+                <p className="text-[10px] font-semibold tracking-[0.18em] text-primary uppercase">
+                  Step {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-2 text-base font-semibold">{step.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {step.description}
                 </p>
