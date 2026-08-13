@@ -24,7 +24,7 @@ export function GithubButton({
       rel="noreferrer noopener"
       {...props}
       className={cn(
-        "github-secondary cta-secondary h-11 w-full rounded-lg px-6 text-base sm:w-auto",
+        "github-secondary cta-secondary h-11 w-full justify-center rounded-lg px-6 text-base sm:w-auto",
         className
       )}
     >
