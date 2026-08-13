@@ -33,7 +33,7 @@ export function SiteHeader() {
           </span>
         </a>
 
-        <nav aria-label="Main" className="hidden md:block">
+        <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
@@ -57,7 +57,7 @@ export function SiteHeader() {
             aria-label={`${SITE_NAME} on GitHub`}
             className={cn(
               buttonVariants({ variant: "ghost", size: "icon-lg" }),
-              "github-secondary-icon hidden sm:inline-flex"
+              "github-secondary-icon hidden lg:inline-flex"
             )}
           >
             <GithubIcon className="size-5" />
@@ -79,7 +79,7 @@ export function SiteHeader() {
             onClick={() => setIsMenuOpen((open) => !open)}
             className={cn(
               buttonVariants({ variant: "outline", size: "icon-lg" }),
-              "md:hidden"
+              "lg:hidden"
             )}
           >
             {isMenuOpen ? (
@@ -95,7 +95,7 @@ export function SiteHeader() {
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="border-t border-border/70 bg-background md:hidden"
+          className="border-t border-border/70 bg-background lg:hidden"
         >
           <ul className="mx-auto flex w-full max-w-6xl flex-col px-4 py-2 sm:px-6">
             {NAV_LINKS.map((link) => (
