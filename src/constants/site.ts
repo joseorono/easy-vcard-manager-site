@@ -11,6 +11,8 @@ export const SITE_DESCRIPTION =
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://easy-vcard-manager.vercel.app";
 
+export const SITE_OG_IMAGE = "/image-og%20(1).png";
+
 export const APP_URL = "https://easy-vcard-manager.vercel.app";
 
 export const REPO_URL = "https://github.com/joseorono/easy-vcard-manager";

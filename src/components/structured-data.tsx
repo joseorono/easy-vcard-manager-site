@@ -6,6 +6,7 @@ import {
   REPO_URL,
   SITE_DESCRIPTION,
   SITE_NAME,
+  SITE_OG_IMAGE,
   SITE_URL,
 } from "@/constants/site";
 
@@ -18,6 +19,7 @@ const structuredData = {
       name: SITE_NAME,
       description: SITE_DESCRIPTION,
       url: APP_URL,
+      image: new URL(SITE_OG_IMAGE, SITE_URL).toString(),
       applicationCategory: "UtilitiesApplication",
       operatingSystem: "Web, Windows",
       isAccessibleForFree: true,
