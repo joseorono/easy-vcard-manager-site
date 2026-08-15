@@ -1,10 +1,31 @@
+import Image from "next/image";
 import { Braces, Download, Image as ImageIcon, QrCode } from "lucide-react";
 
 const exportTargets = [
-  { icon: Download, label: ".vcf file", hint: "vCard 2.1, 3.0 or 4.0" },
-  { icon: QrCode, label: "QR code", hint: "PNG or SVG" },
-  { icon: ImageIcon, label: "Contact card image", hint: "For sharing and signatures" },
-  { icon: Braces, label: "Raw VCF", hint: "Copy the exact text" },
+  {
+    icon: Download,
+    label: ".vcf file",
+    hint: "vCard 2.1, 3.0 or 4.0",
+    illustration: "/svg/10.svg",
+  },
+  {
+    icon: QrCode,
+    label: "QR code",
+    hint: "PNG or SVG",
+    illustration: "/svg/4.svg",
+  },
+  {
+    icon: ImageIcon,
+    label: "Contact card image",
+    hint: "For sharing and signatures",
+    illustration: "/svg/12.svg",
+  },
+  {
+    icon: Braces,
+    label: "Raw VCF",
+    hint: "Copy the exact text",
+    illustration: "/svg/VCF%20Code%20Icon.svg",
+  },
 ];
 
 export function FormatsSection() {
@@ -22,12 +43,25 @@ export function FormatsSection() {
 
       <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {exportTargets.map((target) => (
-          <li key={target.label} className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40">
-            <span className="inline-flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm shadow-primary/10">
-              <target.icon className="size-4" />
-            </span>
-            <h3 className="mt-4 text-sm font-semibold">{target.label}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{target.hint}</p>
+          <li
+            key={target.label}
+            className="group relative overflow-hidden rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40"
+          >
+            <Image
+              src={target.illustration}
+              alt=""
+              width={96}
+              height={96}
+              aria-hidden="true"
+              className="pointer-events-none absolute top-2 right-2 z-0 size-20 opacity-15 transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="relative z-10">
+              <span className="inline-flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary shadow-sm shadow-primary/10">
+                <target.icon className="size-4" />
+              </span>
+              <h3 className="mt-4 text-sm font-semibold">{target.label}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{target.hint}</p>
+            </div>
           </li>
         ))}
       </ul>
