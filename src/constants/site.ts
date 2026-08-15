@@ -6,7 +6,7 @@ export const SITE_TAGLINE =
   "An offline-first contact library to import, edit, search and export vCard files.";
 
 export const SITE_DESCRIPTION =
-  "Free, offline-first editor for .vcf contact files. Import, edit, search and export vCards as .vcf, QR code or image. No account, no upload — your contacts never leave your device.";
+  "Free, offline-first editor for .vcf contact files. Import, edit, search and export vCards as .vcf, QR code or image. No account, no upload. Your contacts never leave your device.";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://easy-vcard-manager.vercel.app";
@@ -48,9 +48,9 @@ export const PRIVACY_POINTS = [
       "Your library lives in your browser's IndexedDB, on your device, under your control.",
   },
   {
-    title: "Nothing to take our word for",
+    title: "Nothing you have to take on trust",
     description:
-      "The source is MIT-licensed and public — open DevTools and watch the network stay silent.",
+      "The source is MIT-licensed and public. Open DevTools while you work and watch the network stay silent.",
   },
 ] as const;
 
@@ -95,7 +95,7 @@ export const FEATURES = [
 
 export const STEPS = [
   {
-    title: "Bring a card in — or start blank",
+    title: "Bring a card in, or start blank",
     description:
       "Drop a .vcf file on the window, choose one from the import dialog, or paste raw vCard text. Multi-contact files land as multiple contacts in your library.",
   },
@@ -118,7 +118,7 @@ export const VCARD_VERSIONS = [
   },
   {
     version: "3.0",
-    description: "The safest pick — the widest support across phones, CRMs and mail clients.",
+    description: "The safest pick, with the widest support across phones, CRMs and mail clients.",
   },
   {
     version: "4.0",
@@ -163,7 +163,7 @@ export const AUDIENCES = [
   {
     title: "Anyone handed a .vcf they can't open",
     description:
-      "Exported from a phone, a CRM or an old address book — desktop operating systems still give you no real vCard editor.",
+      "Exported from a phone, a CRM or an old address book. Desktop operating systems still give you no real vCard editor.",
   },
   {
     title: "People moving between ecosystems and devices",
@@ -178,7 +178,7 @@ export const AUDIENCES = [
   {
     title: "Developers and privacy-minded users",
     description:
-      "Read the raw VCF, choose the emitted version, drive the editor from an agentic browser — and never paste a contact list into an online converter.",
+      "Read the raw VCF, choose the emitted version, drive the editor from an agentic browser, and never paste a contact list into an online converter.",
   },
 ] as const;
 
@@ -201,7 +201,7 @@ export const FAQS = [
   {
     question: "Will it work on my phone?",
     answer:
-      "Yes. It is a Progressive Web App — install it from your browser and it keeps working offline. On small screens the preview and the contact list become slide-in panels.",
+      "Yes. It is a Progressive Web App, so you can install it from your browser and it keeps working offline. On small screens the preview and the contact list become slide-in panels.",
   },
   {
     question: "Is it really free?",

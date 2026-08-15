@@ -31,7 +31,7 @@ export function SiteFooter() {
                 alt=""
                 width={32}
                 height={32}
-                className="size-8 rounded-md"
+                className="size-8 rounded-lg"
               />
               <span className="font-semibold tracking-tight">{SITE_NAME}</span>
             </div>

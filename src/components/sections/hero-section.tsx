@@ -36,12 +36,17 @@ function useInteractiveGrid(
     let lastFrame = performance.now();
     let previousColumn = -1;
     let previousRow = -1;
-    const primaryColor =
-      getComputedStyle(section).getPropertyValue("--primary").trim() || "#3b82f6";
+    let isRunning = false;
+    let primaryColor = "#3b82f6";
 
     const initGrid = () => {
       const bounds = section.getBoundingClientRect();
       const devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+      // Re-read on every init so a theme toggle picks up the new accent.
+      primaryColor =
+        getComputedStyle(section).getPropertyValue("--primary").trim() ||
+        primaryColor;
 
       width = bounds.width;
       height = bounds.height;
@@ -139,17 +144,47 @@ function useInteractiveGrid(
       animationFrame = requestAnimationFrame(drawGrid);
     };
 
+    const start = () => {
+      if (isRunning) {
+        return;
+      }
+      isRunning = true;
+      lastFrame = performance.now();
+      window.addEventListener("mousemove", handleMouseMove);
+      animationFrame = requestAnimationFrame(drawGrid);
+    };
+
+    const stop = () => {
+      if (!isRunning) {
+        return;
+      }
+      isRunning = false;
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationFrame);
+      context.clearRect(0, 0, width, height);
+
+      for (const cell of cells.values()) {
+        cell.alpha = 0;
+      }
+      previousColumn = -1;
+      previousRow = -1;
+    };
+
     const resizeObserver = new ResizeObserver(initGrid);
-    resizeObserver.observe(section);
+    // The hero is the only place this grid is visible, so the frame loop and the
+    // pointer listener are parked whenever it scrolls out of view.
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? start() : stop())
+    );
+
     initGrid();
-    window.addEventListener("mousemove", handleMouseMove);
-    animationFrame = requestAnimationFrame(drawGrid);
+    resizeObserver.observe(section);
+    visibilityObserver.observe(section);
 
     return () => {
-      cancelAnimationFrame(animationFrame);
+      stop();
       resizeObserver.disconnect();
-      window.removeEventListener("mousemove", handleMouseMove);
-      context.clearRect(0, 0, width, height);
+      visibilityObserver.disconnect();
     };
   }, [canvasRef, sectionRef]);
 }
@@ -164,7 +199,7 @@ export function HeroSection() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_20%_0%,color-mix(in_oklab,var(--primary)_12%,transparent),transparent_34%),radial-gradient(circle_at_85%_10%,color-mix(in_oklab,#60a5fa_10%,transparent),transparent_30%)]"
+      className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_18%_0%,color-mix(in_oklch,var(--primary)_13%,transparent),transparent_38%)]"
     >
       <canvas
         ref={canvasRef}
@@ -175,54 +210,42 @@ export function HeroSection() {
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 -top-32 -z-10 h-128 hero-glow"
       />
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pt-16 pb-12 sm:px-6 sm:pt-24 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur-sm">
-            <ShieldCheck className="size-3.5 text-primary" />
-            <span className="size-1.5 rounded-full bg-primary" />
-            Free, open source, and 100% local
-          </p>
-          <div className="mt-3 flex flex-wrap justify-center gap-2 text-[11px] font-medium text-muted-foreground">
-            <span className="rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1">No uploads</span>
-            <span className="rounded-full border border-sky-400/20 bg-sky-400/5 px-2.5 py-1">Works offline</span>
-          </div>
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
-            A real editor for the{" "}
-            <span className="text-primary">.vcf files</span> your phone exports
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground text-pretty">
-            Easy vCard Manager is an offline-first contact library. Import, edit,
-            search and export vCard files right in your browser — no account, no
-            upload, no server to send your contacts to.
-          </p>
 
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href={APP_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "cta-primary h-11 w-full px-6 text-base sm:w-auto"
-              )}
-            >
-              Open the editor
-              <ArrowRight className="size-4" />
-            </a>
-            <GithubButton />
-          </div>
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pt-14 pb-0 sm:px-6 sm:pt-20 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12">
+          <div className="lg:col-span-8">
+            <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur-sm">
+              <ShieldCheck className="size-3.5 text-primary" />
+              Free, open source, and 100% local
+            </p>
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+              A real editor for the{" "}
+              <span className="text-primary">.vcf files</span> your phone exports
+            </h1>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">
+              Import, edit, search and export vCard files right in your browser.
+              No account, no upload, no server involved.
+            </p>
 
-          <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
-            {HERO_HIGHLIGHTS.map((highlight) => (
-              <li key={highlight} className="inline-flex items-center gap-1.5">
-                <Check className="size-4 text-primary" />
-                {highlight}
-              </li>
-            ))}
-          </ul>
+            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+              <a
+                href={APP_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "cta-primary h-11 w-full px-6 text-base sm:w-auto"
+                )}
+              >
+                Open the editor
+                <ArrowRight className="size-4" />
+              </a>
+              <GithubButton />
+            </div>
+          </div>
         </div>
 
-        <div className="mx-auto mt-14 max-w-5xl">
+        <div className="mt-14 lg:ml-auto lg:w-[92%]">
           <div className="overflow-hidden rounded-xl border border-border bg-card shadow-2xl shadow-primary/10">
             <Image
               src="/screenshots/editor-desktop.png"
@@ -235,6 +258,20 @@ export function HeroSection() {
             />
           </div>
         </div>
+      </div>
+
+      <div className="relative z-10 mt-14 border-t border-border">
+        <ul className="mx-auto grid w-full max-w-6xl grid-cols-2 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
+          {HERO_HIGHLIGHTS.map((highlight) => (
+            <li
+              key={highlight}
+              className="flex items-center gap-2 py-4 text-sm text-muted-foreground lg:border-l lg:border-border lg:py-5 lg:pl-6 lg:first:border-l-0 lg:first:pl-0"
+            >
+              <Check className="size-4 shrink-0 text-primary" />
+              {highlight}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

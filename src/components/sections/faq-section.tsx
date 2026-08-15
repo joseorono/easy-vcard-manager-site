@@ -10,17 +10,14 @@ export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="mx-auto w-full max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
-      <div className="text-center">
-        <p className="text-xs font-medium tracking-wide text-primary uppercase">
-          FAQ
-        </p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+    <section id="faq" className="mx-auto w-full max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="reveal max-w-2xl">
+        <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
           Questions worth answering
         </h2>
       </div>
 
-      <div className="mt-12 divide-y divide-border border-y border-border">
+      <div className="mt-10 divide-y divide-border border-y border-border">
         {FAQS.map((faq, index) => {
           const isOpen = openIndex === index;
           return (

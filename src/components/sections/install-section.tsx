@@ -30,16 +30,13 @@ export function InstallSection() {
   return (
     <section id="install" className="border-y border-border bg-muted/40">
       <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div className="reveal grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div>
-            <p className="text-xs font-medium tracking-wide text-primary uppercase">
-              Install anywhere
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
               Runs in the browser. Installs like an app.
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground text-pretty">
-              One codebase, three ways to use it — web app, installable PWA, and a
+              One codebase, three ways to use it: web app, installable PWA, and a
               desktop build. All of them fully offline.
             </p>
 
@@ -68,7 +65,7 @@ export function InstallSection() {
                 "cta-primary mt-8 h-11 w-full px-6 text-base sm:w-auto"
               )}
             >
-              Launch the app
+              Open the editor
               <ArrowRight className="size-4" />
             </a>
           </div>
@@ -82,7 +79,7 @@ export function InstallSection() {
               aria-hidden="true"
               className="pointer-events-none absolute -right-8 -bottom-8 z-0 size-44 opacity-10 sm:size-52"
             />
-            <div className="relative z-10 w-1/2 max-w-70 overflow-hidden rounded-2xl border border-border bg-card shadow-xl">
+            <div className="relative z-10 w-1/2 max-w-70 overflow-hidden rounded-xl border border-border bg-card shadow-xl">
               <Image
                 src="/screenshots/editor-mobile-form.png"
                 alt="The contact form on a phone, with import and download actions pinned to the bottom"
@@ -92,7 +89,7 @@ export function InstallSection() {
                 className="h-auto w-full"
               />
             </div>
-            <div className="relative z-10 w-1/2 max-w-70 overflow-hidden rounded-2xl border border-border bg-card shadow-xl">
+            <div className="relative z-10 w-1/2 max-w-70 overflow-hidden rounded-xl border border-border bg-card shadow-xl">
               <Image
                 src="/screenshots/editor-mobile-preview.png"
                 alt="The live preview panel on a phone, showing the visual card, code and QR tabs"

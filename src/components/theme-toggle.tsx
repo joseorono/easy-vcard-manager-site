@@ -22,7 +22,7 @@ export function ThemeToggle({
     try {
       localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
     } catch {
-      // Storage can be unavailable (private mode, blocked cookies) — ignore.
+      // Storage can be unavailable (private mode, blocked cookies). Ignore.
     }
   }
 
@@ -32,7 +32,7 @@ export function ThemeToggle({
         type="button"
         onClick={toggleTheme}
         className={cn(
-          "flex w-full items-center gap-2 rounded-md px-2 py-3 text-left text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+          "flex w-full items-center gap-2 rounded-lg px-2 py-3 text-left text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
           className
         )}
       >

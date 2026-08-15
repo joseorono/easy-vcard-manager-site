@@ -18,14 +18,14 @@ export function SiteHeader() {
       <div className="relative z-10 mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-2 px-3 sm:gap-4 sm:px-6 lg:px-8">
         <a
           href="#top"
-          className="flex min-w-0 items-center gap-2 rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring sm:gap-2.5"
+          className="flex min-w-0 items-center gap-2 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring sm:gap-2.5"
         >
           <Image
             src="/vcf.svg"
             alt=""
             width={32}
             height={32}
-            className="size-7 shrink-0 rounded-md sm:size-8"
+            className="size-7 shrink-0 rounded-lg sm:size-8"
           />
           <span className="text-xs font-semibold tracking-tight whitespace-nowrap sm:text-[0.95rem]">
             <span className="sm:hidden">Easy vCard</span>
@@ -39,7 +39,7 @@ export function SiteHeader() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                 >
                   {link.label}
                 </a>
@@ -103,7 +103,7 @@ export function SiteHeader() {
                 <a
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block rounded-md px-2 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  className="block rounded-lg px-2 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
                   {link.label}
                 </a>

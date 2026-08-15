@@ -26,7 +26,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Edit and export .vcf contact files offline`,
+    default: `${SITE_NAME} - Edit and export .vcf contact files offline`,
     template: `%s · ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} - ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     locale: "en_US",
     images: [
@@ -75,13 +75,13 @@ export const metadata: Metadata = {
         url: SITE_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} — offline vCard editor and contact manager`,
+        alt: `${SITE_NAME} - offline vCard editor and contact manager`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} - ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     images: [SITE_OG_IMAGE],
   },
