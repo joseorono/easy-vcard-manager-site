@@ -54,10 +54,10 @@ export function DevelopersSection() {
                   <Scale className="size-5" />
                 </span>
                 <div>
-                  <h3 className="text-base font-semibold">MIT licensed, auditable</h3>
+                  <h3 className="text-base font-semibold">MIT licensed, fully auditable</h3>
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    React, TypeScript and Vite, with IndexedDB for storage. Read the
-                    code, fork it, or open a pull request.
+                    Every important behavior is visible in the source, making it easy
+                    to audit how your contacts are handled and verify that privacy stays local.
                   </p>
                 </div>
               </div>
