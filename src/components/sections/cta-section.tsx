@@ -46,7 +46,7 @@ export function CtaSection() {
                 "cta-primary h-11 w-full px-6 text-base sm:w-auto"
               )}
             >
-              Open the editor
+              Open in Browser
               <ArrowRight className="size-4" />
             </a>
             <GithubButton label="Star it on GitHub" />

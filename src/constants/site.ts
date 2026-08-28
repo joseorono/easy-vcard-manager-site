@@ -15,6 +15,11 @@ export const SITE_OG_IMAGE = "/image-og%20(1).png";
 
 export const APP_URL = "https://easy-vcard-manager.vercel.app";
 
+export const WEBAPP_BASE_URL = APP_URL;
+
+export const WINDOWS_INSTALLER_URL =
+  "https://github.com/joseorono/easy-vcard-manager/releases";
+
 export const REPO_URL = "https://github.com/joseorono/easy-vcard-manager";
 
 export const AUTHOR_NAME = "José Oroño";

@@ -68,8 +68,7 @@ export function SiteHeader() {
             rel="noreferrer noopener"
             className={cn(buttonVariants({ size: "lg" }), "cta-primary px-3 text-xs sm:px-4 sm:text-sm")}
           >
-            <span className="sm:hidden">Open app</span>
-            <span className="hidden sm:inline">Open the editor</span>
+            <span>Open in Browser</span>
           </a>
           <button
             type="button"

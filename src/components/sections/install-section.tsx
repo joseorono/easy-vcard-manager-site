@@ -1,8 +1,18 @@
 import Image from "next/image";
-import { ArrowRight, MonitorDown, Smartphone, WifiOff } from "lucide-react";
+import {
+  ArrowRight,
+  Download,
+  MonitorDown,
+  Smartphone,
+  WifiOff,
+} from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
-import { APP_URL } from "@/constants/site";
+import {
+  APP_URL,
+  WEBAPP_BASE_URL,
+  WINDOWS_INSTALLER_URL,
+} from "@/constants/site";
 import { cn } from "@/lib/utils";
 
 const platforms = [
@@ -59,18 +69,44 @@ export function InstallSection() {
               ))}
             </ul>
 
-            <a
-              href={APP_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "cta-primary mt-8 h-11 w-full px-6 text-base sm:w-auto"
-              )}
-            >
-              Launch the app
-              <ArrowRight className="size-4" />
-            </a>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a
+                href={APP_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "cta-primary h-11 w-full px-6 text-base sm:w-auto"
+                )}
+              >
+                Open in Browser
+                <ArrowRight className="size-4" />
+              </a>
+              <a
+                href={WEBAPP_BASE_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "h-11 w-full px-6 text-base sm:w-auto"
+                )}
+              >
+                Install the PWA
+                <MonitorDown className="size-4" />
+              </a>
+              <a
+                href={WINDOWS_INSTALLER_URL}
+                target="_blank"
+                rel="noreferrer noopener"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "h-11 w-full px-6 text-base sm:w-auto"
+                )}
+              >
+                Download for Windows
+                <Download className="size-4" />
+              </a>
+            </div>
           </div>
 
           <div className="relative flex items-end justify-center gap-4 sm:gap-6">
