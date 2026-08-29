@@ -268,12 +268,12 @@
     width: 100%;
   }
 
-  .github-secondary svg:last-child {
+  .github-secondary .github-secondary-arrow {
     transition: transform 200ms ease, color 200ms ease;
   }
 
-  .github-secondary:hover svg:last-child,
-  .github-secondary:focus-visible svg:last-child {
+  .github-secondary:hover .github-secondary-arrow,
+  .github-secondary:focus-visible .github-secondary-arrow {
     transform: translateX(4px);
     color: var(--primary);
   }
@@ -350,8 +350,8 @@
 
   .cta-secondary:hover .github-secondary-label::before,
   .cta-secondary:focus-visible .github-secondary-label::before,
-  .cta-secondary:hover svg:last-child,
-  .cta-secondary:focus-visible svg:last-child {
+  .cta-secondary:hover .github-secondary-arrow,
+  .cta-secondary:focus-visible .github-secondary-arrow {
     color: var(--primary-foreground);
   }
 }

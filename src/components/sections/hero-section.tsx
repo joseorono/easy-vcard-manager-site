@@ -2,11 +2,21 @@
 
 import { useEffect, useRef, type RefObject } from "react";
 import Image from "next/image";
-import { ArrowRight, Check, ShieldCheck } from "lucide-react";
-
-import { GithubButton } from "@/components/github-button";
+import {
+  Check,
+  ChevronDown,
+  Download,
+  ExternalLink,
+  MonitorDown,
+  ShieldCheck,
+} from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { APP_URL, HERO_HIGHLIGHTS } from "@/constants/site";
+import {
+  APP_URL,
+  HERO_HIGHLIGHTS,
+  WEBAPP_BASE_URL,
+  WINDOWS_INSTALLER_URL,
+} from "@/constants/site";
 import { cn } from "@/lib/utils";
 
 function useInteractiveGrid(
@@ -157,8 +167,29 @@ function useInteractiveGrid(
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const downloadMenuRef = useRef<HTMLDetailsElement>(null);
 
   useInteractiveGrid(sectionRef, canvasRef);
+
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      const downloadMenu = downloadMenuRef.current;
+
+      if (
+        downloadMenu?.open &&
+        event.target instanceof Node &&
+        !downloadMenu.contains(event.target)
+      ) {
+        downloadMenu.open = false;
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, []);
 
   return (
     <section
@@ -207,9 +238,47 @@ export function HeroSection() {
               )}
             >
               Open in Browser
-              <ArrowRight className="size-4" />
+              <ExternalLink className="size-4" />
             </a>
-            <GithubButton />
+            <div className="flex items-stretch">
+              <a
+                href="#download"
+                className="github-secondary cta-secondary h-11 w-full justify-center rounded-l-lg rounded-r-none px-6 text-base sm:w-auto"
+              >
+                <Download className="size-4" />
+                <span className="github-secondary-label" data-label="Download">
+                  Download
+                </span>
+              </a>
+              <details ref={downloadMenuRef} className="group relative">
+                <summary
+                  className="github-secondary cta-secondary flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-l-none rounded-r-lg border-l-0 p-0 text-base [&::-webkit-details-marker]:hidden"
+                  aria-label="Choose a download option"
+                >
+                  <ChevronDown className="size-4 transition-transform group-open:rotate-180" />
+                </summary>
+                <div className="absolute top-[calc(100%+0.5rem)] right-0 z-30 flex min-w-56 flex-col gap-1 rounded-lg border border-primary/35 bg-background/80 p-2 text-left shadow-xl backdrop-blur-xl">
+                  <a
+                    href={WEBAPP_BASE_URL}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
+                  >
+                    <MonitorDown className="size-4" />
+                    Install the PWA
+                  </a>
+                  <a
+                    href={WINDOWS_INSTALLER_URL}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"
+                  >
+                    <Download className="size-4" />
+                    Download for Windows
+                  </a>
+                </div>
+              </details>
+            </div>
           </div>
 
           <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">

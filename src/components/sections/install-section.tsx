@@ -103,7 +103,10 @@ export function InstallSection() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-8">
+        <div
+          id="download"
+          className="mt-12 scroll-mt-24 border-t border-border pt-8"
+        >
           <p className="text-center text-sm font-semibold tracking-wide text-foreground">
             Choose how to use it
           </p>

@@ -32,7 +32,7 @@ export function GithubButton({
       <span className="github-secondary-label" data-label={label}>
         {label}
       </span>
-      <ArrowRight className="size-4" />
+      <ArrowRight className="github-secondary-arrow size-4" />
     </a>
   );
 }
