@@ -69,44 +69,6 @@ export function InstallSection() {
               ))}
             </ul>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a
-                href={APP_URL}
-                target="_blank"
-                rel="noreferrer noopener"
-                className={cn(
-                  buttonVariants({ size: "lg" }),
-                  "cta-primary h-11 w-full px-6 text-base sm:w-auto"
-                )}
-              >
-                Open in Browser
-                <ArrowRight className="size-4" />
-              </a>
-              <a
-                href={WEBAPP_BASE_URL}
-                target="_blank"
-                rel="noreferrer noopener"
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "lg" }),
-                  "h-11 w-full px-6 text-base sm:w-auto"
-                )}
-              >
-                Install the PWA
-                <MonitorDown className="size-4" />
-              </a>
-              <a
-                href={WINDOWS_INSTALLER_URL}
-                target="_blank"
-                rel="noreferrer noopener"
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "lg" }),
-                  "h-11 w-full px-6 text-base sm:w-auto"
-                )}
-              >
-                Download for Windows
-                <Download className="size-4" />
-              </a>
-            </div>
           </div>
 
           <div className="relative flex items-end justify-center gap-4 sm:gap-6">
@@ -138,6 +100,50 @@ export function InstallSection() {
                 className="h-auto w-full"
               />
             </div>
+          </div>
+        </div>
+
+        <div className="mt-12 border-t border-border pt-8">
+          <p className="text-center text-sm font-semibold tracking-wide text-foreground">
+            Choose how to use it
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            <a
+              href={APP_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "cta-primary h-auto min-h-12 justify-between px-4 text-left text-sm"
+              )}
+            >
+              <span>Open in Browser</span>
+              <ArrowRight className="size-4 shrink-0" />
+            </a>
+            <a
+              href={WEBAPP_BASE_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "h-auto min-h-12 justify-between px-4 text-left text-sm"
+              )}
+            >
+              <span>Install the PWA</span>
+              <MonitorDown className="size-4 shrink-0" />
+            </a>
+            <a
+              href={WINDOWS_INSTALLER_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "h-auto min-h-12 justify-between px-4 text-left text-sm"
+              )}
+            >
+              <span>Download for Windows</span>
+              <Download className="size-4 shrink-0" />
+            </a>
           </div>
         </div>
       </div>

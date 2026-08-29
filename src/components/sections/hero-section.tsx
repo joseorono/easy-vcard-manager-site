@@ -2,22 +2,11 @@
 
 import { useEffect, useRef, type RefObject } from "react";
 import Image from "next/image";
-import {
-  ArrowDownToLine,
-  ArrowRight,
-  Check,
-  MonitorDown,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 
 import { GithubButton } from "@/components/github-button";
 import { buttonVariants } from "@/components/ui/button";
-import {
-  APP_URL,
-  HERO_HIGHLIGHTS,
-  WEBAPP_BASE_URL,
-  WINDOWS_INSTALLER_URL,
-} from "@/constants/site";
+import { APP_URL, HERO_HIGHLIGHTS } from "@/constants/site";
 import { cn } from "@/lib/utils";
 
 function useInteractiveGrid(
@@ -207,7 +196,7 @@ export function HeroSection() {
             upload, no server to send your contacts to.
           </p>
 
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href={APP_URL}
               target="_blank"
@@ -219,30 +208,6 @@ export function HeroSection() {
             >
               Open in Browser
               <ArrowRight className="size-4" />
-            </a>
-            <a
-              href={WEBAPP_BASE_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "h-11 w-full px-6 text-base sm:w-auto"
-              )}
-            >
-              Install the PWA
-              <MonitorDown className="size-4" />
-            </a>
-            <a
-              href={WINDOWS_INSTALLER_URL}
-              target="_blank"
-              rel="noreferrer noopener"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "h-11 w-full px-6 text-base sm:w-auto"
-              )}
-            >
-              Download for Windows
-              <ArrowDownToLine className="size-4" />
             </a>
             <GithubButton />
           </div>
