@@ -74,6 +74,9 @@
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
   --grid-line: oklch(0.145 0 0 / 7%);
+  --code-surface: oklch(0.985 0.002 265);
+  --code-foreground: oklch(0.36 0.012 265);
+  --code-key: oklch(0.48 0.185 262.9);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -104,6 +107,9 @@
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.62 0.194 259);
   --grid-line: oklch(1 0 0 / 8%);
+  --code-surface: oklch(0.195 0.016 265);
+  --code-foreground: oklch(0.87 0.008 265);
+  --code-key: oklch(0.72 0.145 259);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -331,14 +337,17 @@
     z-index: 1;
   }
 
+  /* The sweep behind this button is only a 10-16% tint, so the label has to
+     stay on the accent color. Using --primary-foreground here rendered
+     near-white text on a near-white fill in light mode. */
   .cta-secondary .github-secondary-label::before {
-    color: var(--primary-foreground);
+    color: var(--primary);
   }
 
   .cta-secondary:hover,
   .cta-secondary:focus-visible {
     background: transparent;
-    color: var(--primary-foreground);
+    color: var(--primary);
   }
 
   .cta-secondary:hover::before,
@@ -352,7 +361,92 @@
   .cta-secondary:focus-visible .github-secondary-label::before,
   .cta-secondary:hover .github-secondary-arrow,
   .cta-secondary:focus-visible .github-secondary-arrow {
-    color: var(--primary-foreground);
+    color: var(--primary);
+  }
+
+  /*
+   * Scroll reveal, native scroll-driven animation. No JS, no scroll listeners.
+   * Purpose: sequence each section's content so the eye lands on the heading
+   * before the supporting detail.
+   * Where `animation-timeline` is unsupported the declaration is dropped, the
+   * animation resolves to a 0s duration and `both` fill pins the end state, so
+   * the content is simply visible. Same outcome under reduced motion.
+   */
+  .reveal {
+    animation: reveal-in linear both;
+    animation-timeline: view();
+    animation-range: entry 15% entry 90%;
+  }
+
+  @keyframes reveal-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /*
+   * Marquee for the supported-field list. Purpose: show the breadth of the
+   * vCard property coverage at a glance without a 30-row list. One marquee
+   * block on the page.
+   */
+  .marquee-viewport {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-drift 64s linear infinite;
+  }
+
+  .marquee-track[data-direction="reverse"] {
+    animation-direction: reverse;
+    animation-duration: 78s;
+  }
+
+  .marquee-viewport:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-drift {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* Snapping a marquee to its end frame would hide half the list, so drop
+       the animation entirely and hand scrolling back to the user. */
+    .marquee-track {
+      animation: none !important;
+      transform: none !important;
+    }
+
+    .marquee-viewport {
+      overflow-x: auto;
+    }
   }
 }
 
