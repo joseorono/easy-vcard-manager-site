@@ -9,7 +9,7 @@ export function CtaSection() {
   return (
     <section
       id="get-started"
-      className="relative isolate overflow-hidden border-t border-border bg-primary/8 text-foreground"
+      className="relative isolate overflow-hidden border-t border-border dark:bg-zinc-750 text-foreground"
     >
       <div
         aria-hidden="true"
