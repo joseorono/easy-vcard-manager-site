@@ -53,9 +53,9 @@ export const PRIVACY_POINTS = [
       "Your library lives in your browser's IndexedDB, on your device, under your control.",
   },
   {
-    title: "Nothing to take our word for",
+    title: "Nothing you have to take on trust",
     description:
-      "The source is MIT-licensed and public — open DevTools and watch the network stay silent.",
+      "The source is MIT-licensed and public. Open DevTools while you work and watch the network stay silent.",
   },
 ] as const;
 
@@ -123,7 +123,7 @@ export const VCARD_VERSIONS = [
   },
   {
     version: "3.0",
-    description: "The safest pick — the widest support across phones, CRMs and mail clients.",
+    description: "The safest pick, with the widest support across phones, CRMs and mail clients.",
   },
   {
     version: "4.0",
