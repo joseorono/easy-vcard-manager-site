@@ -7,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-geist-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -55,7 +55,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0.546 0.215 262.9);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -66,13 +66,17 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.546 0.215 262.9);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
+  --grid-line: oklch(0.145 0 0 / 7%);
+  --code-surface: oklch(0.985 0.002 265);
+  --code-foreground: oklch(0.36 0.012 265);
+  --code-key: oklch(0.48 0.185 262.9);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -84,24 +88,28 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.165 0.014 265);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.215 0.016 265);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.215 0.016 265);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  --primary: oklch(0.62 0.194 259);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.275 0.016 265);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --muted: oklch(0.275 0.016 265);
+  --muted-foreground: oklch(0.72 0.012 265);
+  --accent: oklch(0.275 0.016 265);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.62 0.194 259);
+  --grid-line: oklch(1 0 0 / 8%);
+  --code-surface: oklch(0.195 0.016 265);
+  --code-foreground: oklch(0.87 0.008 265);
+  --code-key: oklch(0.72 0.145 259);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -117,6 +125,331 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+@utility hero-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  mask-image: radial-gradient(
+    ellipse 75% 65% at 50% 0%,
+    black 20%,
+    transparent 75%
+  );
+}
+
+@utility cta-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklch, var(--foreground) 18%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--foreground) 18%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 4rem 4rem;
+  mask-image: radial-gradient(
+    ellipse 120% 120% at 100% 0%,
+    black 25%,
+    transparent 100%
+  );
+}
+
+@utility cta-glow {
+  background-image: radial-gradient(
+    ellipse 115% 115% at 100% 0%,
+    color-mix(in oklch, var(--primary), transparent 72%),
+    transparent 75%
+  );
+  mask-image: radial-gradient(
+    ellipse 120% 120% at 100% 0%,
+    black 25%,
+    transparent 100%
+  );
+}
+
+@utility hero-glow {
+  background-image: radial-gradient(
+    55% 55% at 50% 0%,
+    color-mix(in oklch, var(--primary), transparent 82%),
+    transparent 70%
+  );
+}
+
+@layer components {
+  .cta-primary {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    box-shadow: 0 8px 20px -10px color-mix(in oklch, var(--primary) 65%, transparent);
+    transition: box-shadow 300ms ease, transform 200ms ease;
+  }
+
+  .cta-primary::before,
+  .cta-primary::after {
+    position: absolute;
+    inset: -45% -12%;
+    z-index: -1;
+    content: "";
+    transform: translateX(-115%) skewX(-14deg);
+    transform-origin: left center;
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cta-primary::before {
+    background: color-mix(in oklch, var(--primary) 76%, white);
+  }
+
+  .cta-primary::after {
+    background: color-mix(in oklch, var(--primary) 84%, black);
+    transition-delay: 90ms;
+  }
+
+  .cta-primary:hover {
+    box-shadow: 0 12px 26px -10px color-mix(in oklch, var(--primary) 75%, transparent);
+  }
+
+  .cta-primary:hover::before,
+  .cta-primary:hover::after,
+  .cta-primary:focus-visible::before,
+  .cta-primary:focus-visible::after {
+    transform: translateX(0) skewX(-14deg);
+  }
+
+  .github-secondary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 0;
+    background: transparent;
+    color: var(--muted-foreground);
+    font-weight: 600;
+    transition: color 200ms ease;
+  }
+
+  .github-secondary::after {
+    position: absolute;
+    right: 0;
+    bottom: -0.35rem;
+    left: 0;
+    height: 2px;
+    background: var(--primary);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease-out;
+  }
+
+  .github-secondary-label {
+    position: relative;
+    margin: 0;
+  }
+
+  .github-secondary-label::before {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    width: 0;
+    color: var(--primary);
+    content: attr(data-label);
+    white-space: nowrap;
+    transition: width 300ms ease-out;
+  }
+
+  .github-secondary:hover,
+  .github-secondary:focus-visible {
+    color: var(--primary);
+  }
+
+  .github-secondary:hover::after,
+  .github-secondary:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .github-secondary:hover .github-secondary-label::before,
+  .github-secondary:focus-visible .github-secondary-label::before {
+    width: 100%;
+  }
+
+  .github-secondary .github-secondary-arrow {
+    transition: transform 200ms ease, color 200ms ease;
+  }
+
+  .github-secondary:hover .github-secondary-arrow,
+  .github-secondary:focus-visible .github-secondary-arrow {
+    transform: translateX(4px);
+    color: var(--primary);
+  }
+
+  .github-secondary:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 4px;
+  }
+
+  .github-secondary-icon {
+    border-color: transparent;
+    background: transparent;
+    color: var(--muted-foreground);
+    transition: color 200ms ease, transform 200ms ease;
+  }
+
+  .github-secondary-icon:hover,
+  .github-secondary-icon:focus-visible {
+    color: var(--primary);
+    transform: translateY(-1px);
+  }
+
+  .cta-secondary {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid color-mix(in oklch, var(--primary) 35%, transparent);
+    background: transparent;
+    color: var(--foreground);
+    box-shadow: none;
+  }
+
+  .cta-secondary::before,
+  .cta-secondary::after {
+    position: absolute;
+    inset: -45% -12%;
+    z-index: 0;
+    content: "";
+    transform: translateX(-115%) skewX(-14deg);
+    transform-origin: left center;
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .cta-secondary::before {
+    background: color-mix(in oklch, var(--primary) 10%, transparent);
+  }
+
+  .cta-secondary::after {
+    background: color-mix(in oklch, var(--primary) 16%, transparent);
+    transition-delay: 90ms;
+  }
+
+  .cta-secondary > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* The sweep behind this button is only a 10-16% tint, so the label has to
+     stay on the accent color. Using --primary-foreground here rendered
+     near-white text on a near-white fill in light mode. */
+  .cta-secondary .github-secondary-label::before {
+    color: var(--primary);
+  }
+
+  .cta-secondary:hover,
+  .cta-secondary:focus-visible {
+    background: transparent;
+    color: var(--primary);
+  }
+
+  .cta-secondary:hover::before,
+  .cta-secondary:hover::after,
+  .cta-secondary:focus-visible::before,
+  .cta-secondary:focus-visible::after {
+    transform: translateX(0) skewX(-14deg);
+  }
+
+  .cta-secondary:hover .github-secondary-label::before,
+  .cta-secondary:focus-visible .github-secondary-label::before,
+  .cta-secondary:hover .github-secondary-arrow,
+  .cta-secondary:focus-visible .github-secondary-arrow {
+    color: var(--primary);
+  }
+
+  /*
+   * Scroll reveal, native scroll-driven animation. No JS, no scroll listeners.
+   * Purpose: sequence each section's content so the eye lands on the heading
+   * before the supporting detail.
+   * Where `animation-timeline` is unsupported the declaration is dropped, the
+   * animation resolves to a 0s duration and `both` fill pins the end state, so
+   * the content is simply visible. Same outcome under reduced motion.
+   */
+  .reveal {
+    animation: reveal-in linear both;
+    animation-timeline: view();
+    animation-range: entry 15% entry 90%;
+  }
+
+  @keyframes reveal-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /*
+   * Marquee for the supported-field list. Purpose: show the breadth of the
+   * vCard property coverage at a glance without a 30-row list. One marquee
+   * block on the page.
+   */
+  .marquee-viewport {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-drift 64s linear infinite;
+  }
+
+  .marquee-track[data-direction="reverse"] {
+    animation-direction: reverse;
+    animation-duration: 78s;
+  }
+
+  .marquee-viewport:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-drift {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* Snapping a marquee to its end frame would hide half the list, so drop
+       the animation entirely and hand scrolling back to the user. */
+    .marquee-track {
+      animation: none !important;
+      transform: none !important;
+    }
+
+    .marquee-viewport {
+      overflow-x: auto;
+    }
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -126,5 +459,21 @@
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  [id] {
+    scroll-margin-top: 5rem;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
