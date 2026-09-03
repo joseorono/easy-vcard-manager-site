@@ -13,7 +13,7 @@ export const SITE_URL =
 
 export const SITE_OG_IMAGE = "/image-og%20(1).png";
 
-export const APP_URL = "https://easy-vcard-manager.vercel.app";
+export const APP_URL = "https://easy-vcard-manager-app.vercel.app/";
 
 export const WEBAPP_BASE_URL = APP_URL;
 
