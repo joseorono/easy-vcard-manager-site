@@ -14,7 +14,7 @@ import { buttonVariants } from "@/components/ui/button";
 import {
   APP_URL,
   HERO_HIGHLIGHTS,
-  WEBAPP_BASE_URL,
+  PWA_INSTALL_URL,
   WINDOWS_INSTALLER_URL,
 } from "@/constants/site";
 import { cn } from "@/lib/utils";
@@ -259,7 +259,7 @@ export function HeroSection() {
                 </summary>
                 <div className="absolute top-[calc(100%+0.5rem)] right-0 z-30 flex min-w-56 flex-col gap-1 rounded-lg border border-primary/35 bg-background/80 p-2 text-left shadow-xl backdrop-blur-xl">
                   <a
-                    href={WEBAPP_BASE_URL}
+                    href={PWA_INSTALL_URL}
                     target="_blank"
                     rel="noreferrer noopener"
                     className="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-muted"

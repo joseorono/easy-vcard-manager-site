@@ -10,7 +10,7 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import {
   APP_URL,
-  WEBAPP_BASE_URL,
+  PWA_INSTALL_URL,
   WINDOWS_INSTALLER_URL,
 } from "@/constants/site";
 import { cn } from "@/lib/utils";
@@ -124,7 +124,7 @@ export function InstallSection() {
               <ArrowRight className="size-4 shrink-0" />
             </a>
             <a
-              href={WEBAPP_BASE_URL}
+              href={PWA_INSTALL_URL}
               target="_blank"
               rel="noreferrer noopener"
               className={cn(

@@ -17,6 +17,8 @@ export const APP_URL = "https://easy-vcard-manager-app.vercel.app/";
 
 export const WEBAPP_BASE_URL = APP_URL;
 
+export const PWA_INSTALL_URL = `${WEBAPP_BASE_URL}?install=1`;
+
 export const WINDOWS_INSTALLER_URL =
   "https://github.com/joseorono/easy-vcf-editor/releases/download/v1.0.0/Easy.vCard.Manager.Setup.1.0.0.exe";
 
